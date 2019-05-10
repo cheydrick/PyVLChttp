@@ -1,8 +1,8 @@
 VLCHTTPAPI is a Python module that uses the VLC HTTP API to control VLC.
 
 Usage:
-    >>>import VLCHTTPAPI
-    >>>vlc = VLCHTTPAPI()
+    >>>from pyvlchttp import VLCHTTPAPI
+    >>>vlc = VLCHTTPAPI('127.0.0.1', '8080', 'password')
     >>>vlc.play()
     >>>vlc.last_http_status_code
     200
