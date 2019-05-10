@@ -39,7 +39,7 @@ class VLCHTTPAPI():
         self.empty_playlist_url = self.command_prefix + 'pl_empty'
         self.random_toggle_url = self.command_prefix + 'pl_random'
         self.loop_toggle_url = self.command_prefix + 'pl_loop'
-        self.repeat_toggle_url = self.command_prefix + 'pl_toggle'
+        self.repeat_toggle_url = self.command_prefix + 'pl_repeat'
         self.fullscreen_toggle_url = self.command_prefix + 'fullscreen'
 
         # URLs that require additional arguments
@@ -85,6 +85,9 @@ class VLCHTTPAPI():
 
     def toggle_fullscreen(self):
         r = self._send_command(self.fullscreen_toggle_url)
+    
+    def add_to_playlist(self, mrl):
+        r = self._send_command(self.add_mrl_playlist_prefix, mrl)
 
     def _send_command(self, command_url, mrl_or_id = None):
         if mrl_or_id == None:
