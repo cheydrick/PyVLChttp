@@ -27,6 +27,7 @@ class VLCHTTPAPI():
         # URLs that return status/playlist
         self.status_url = self.vlc_url + '/requests/status.xml'
         self.playlist_url = self.vlc_url + '/requests/playlist.xml'
+        self.browse_url = self.vlc_url + '/requests/browse.xml'
 
         # Command url prefix
         self.command_prefix = self.status_url + '?command='
@@ -46,6 +47,7 @@ class VLCHTTPAPI():
         self.play_mrl_url_prefix = self.command_prefix + 'in_play&input='
         self.add_mrl_playlist_prefix = self.command_prefix + 'in_enqueue&input='
         self.play_id_url_prefix = self.command_prefix + 'pl_play&id='
+        self.browse_dir_prefix = self.browse_url + '?dir='
 
         # Last HTTP status code storage
         self.last_http_status_code = 0
@@ -88,6 +90,11 @@ class VLCHTTPAPI():
     
     def add_to_playlist(self, mrl):
         r = self._send_command(self.add_mrl_playlist_prefix, mrl)
+
+    def browse_dir(self, dir):
+        ''' >>>browse_dir('/Users/Joe/Media/') '''
+        r = self._send_command(self.browse_dir_prefix, dir)
+        return r
 
     def _send_command(self, command_url, mrl_or_id = None):
         if mrl_or_id == None:

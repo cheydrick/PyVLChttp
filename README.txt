@@ -28,3 +28,5 @@ TODO:
       every time (unless that's ok?). Maybe instead just check once on init and hope
       nothing bad happens later.
     - Utility functions for converting file paths to MRL format
+    - Utility functions for converting browse_dir() output to something useful
+    - Maybe just use the json output and drop xml?
