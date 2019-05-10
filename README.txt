@@ -27,3 +27,4 @@ TODO:
       happened, else the caller has to check the HTTP status and connection status
       every time (unless that's ok?). Maybe instead just check once on init and hope
       nothing bad happens later.
+    - Utility functions for converting file paths to MRL format
