@@ -30,3 +30,4 @@ TODO:
     - Utility functions for converting file paths to MRL format
     - Utility functions for converting browse_dir() output to something useful
     - Maybe just use the json output and drop xml?
+    - URI? URL? I don't know what the rules are

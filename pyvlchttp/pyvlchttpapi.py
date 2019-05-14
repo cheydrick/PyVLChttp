@@ -28,26 +28,23 @@ class VLCHTTPAPI():
         self.status_url = self.vlc_url + '/requests/status.xml'
         self.playlist_url = self.vlc_url + '/requests/playlist.xml'
         self.browse_url = self.vlc_url + '/requests/browse.xml'
-
-        # Command url prefix
-        self.command_prefix = self.status_url + '?command='
         
         # URLs that send simple commands
-        self.play_url = self.command_prefix + 'pl_play'
-        self.stop_url = self.command_prefix + 'pl_stop'
-        self.play_next_url = self.command_prefix + 'pl_next'
-        self.play_previous_url = self.command_prefix + 'pl_previous'
-        self.empty_playlist_url = self.command_prefix + 'pl_empty'
-        self.random_toggle_url = self.command_prefix + 'pl_random'
-        self.loop_toggle_url = self.command_prefix + 'pl_loop'
-        self.repeat_toggle_url = self.command_prefix + 'pl_repeat'
-        self.fullscreen_toggle_url = self.command_prefix + 'fullscreen'
+        self.play_url = self.status_url + '?command=pl_play'
+        self.stop_url = self.status_url + '?command=pl_stop'
+        self.play_next_url = self.status_url + '?command=pl_next'
+        self.play_previous_url = self.status_url + '?command=pl_previous'
+        self.empty_playlist_url = self.status_url + '?command=pl_empty'
+        self.random_toggle_url = self.status_url + '?command=pl_random'
+        self.loop_toggle_url = self.status_url + '?command=pl_loop'
+        self.repeat_toggle_url = self.status_url + '?command=pl_repeat'
+        self.fullscreen_toggle_url = self.status_url + '?command=fullscreen'
 
         # URLs that require additional arguments
-        self.play_mrl_url_prefix = self.command_prefix + 'in_play&input='
-        self.add_mrl_playlist_prefix = self.command_prefix + 'in_enqueue&input='
-        self.play_id_url_prefix = self.command_prefix + 'pl_play&id='
-        self.browse_dir_prefix = self.browse_url + '?dir='
+        self.play_mrl_url_prefix = self.status_url + '?command=in_play&input='
+        self.add_mrl_playlist_url_prefix = self.status_url + '?command=in_enqueue&input='
+        self.play_id_url_prefix = self.status_url + '?command=pl_play&id='
+        self.browse_dir_url_prefix = self.browse_url + '?dir='
 
         # Last HTTP status code storage
         self.last_http_status_code = 0
@@ -89,11 +86,11 @@ class VLCHTTPAPI():
         r = self._send_command(self.fullscreen_toggle_url)
     
     def add_to_playlist(self, mrl):
-        r = self._send_command(self.add_mrl_playlist_prefix, mrl)
+        r = self._send_command(self.add_mrl_playlist_url_prefix, mrl)
 
     def browse_dir(self, dir):
         ''' >>>browse_dir('/Users/Joe/Media/') '''
-        r = self._send_command(self.browse_dir_prefix, dir)
+        r = self._send_command(self.browse_dir_url_prefix, dir)
         return r
 
     def _send_command(self, command_url, mrl_or_id = None):
