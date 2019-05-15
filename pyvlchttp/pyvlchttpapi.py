@@ -15,12 +15,6 @@ class VLCHTTPAPI():
         etc...
     """
     def __init__(self, ip = '127.0.0.1', port = '8080', password = 'password'):
-        if 'requests' not in sys.modules:
-            try:
-                import requests
-            except ImportError:
-                print("Couldn't import requests module!")
-
         self.vlc_url = 'http://' + ip + ':' + port
         self.password = password
 
@@ -47,49 +41,52 @@ class VLCHTTPAPI():
         self.browse_dir_url_prefix = self.browse_url + '?dir='
 
         # Last HTTP status code storage
-        self.last_http_status_code = 0
+        self.last_http_status_code = None
         self.connection_error = False
 
     def get_status(self):
+        #TODO make this return something sensible
         r = self._send_command(self.status_url)
         return r
     
     def get_playlist(self):
+        #TODO make this return something sensible
         r = self._send_command(self.playlist_url)
         return r
 
     def play(self):
-        r = self._send_command(self.play_url)
+        return self._send_command(self.play_url)
 
     def stop(self):
-        r = self._send_command(self.stop_url)
+        return self._send_command(self.stop_url)
 
     def play_next(self):
-        r = self._send_command(self.play_next_url)
+        return self._send_command(self.play_next_url)
 
     def play_previous(self):
-        r = self._send_command(self.play_previous_url)
+        return self._send_command(self.play_previous_url)
 
     def empty_playlist(self):
-        r = self._send_command(self.empty_playlist_url)
+        return self._send_command(self.empty_playlist_url)
 
     def toggle_random(self):
-        r = self._send_command(self.random_toggle_url)
+        return self._send_command(self.random_toggle_url)
 
     def toggle_loop(self):
-        r = self._send_command(self.loop_toggle_url)
+        return self._send_command(self.loop_toggle_url)
     
     def toggle_repeat(self):
-        r = self._send_command(self.toggle_repeat_url)
+        return self._send_command(self.toggle_repeat_url)
 
     def toggle_fullscreen(self):
-        r = self._send_command(self.toggle_fullscreen_url)
+        return self._send_command(self.toggle_fullscreen_url)
     
     def add_to_playlist(self, mrl):
-        r = self._send_command(self.add_mrl_playlist_url_prefix, mrl)
+        return self._send_command(self.add_mrl_playlist_url_prefix, mrl)
 
     def browse_dir(self, dir):
         ''' >>>browse_dir('/Users/Joe/Media/') '''
+        # TODO make this return something sensible
         r = self._send_command(self.browse_dir_url_prefix, dir)
         return r
 
@@ -98,14 +95,7 @@ class VLCHTTPAPI():
             tmp_url = command_url
         else:
             tmp_url = command_url + mrl_or_id
-        
-        try:
-            r = requests.get(tmp_url, auth=('', self.password))
-        except ConnectionError:
-            self.connection_error = True
-            # What should I return on failure?
-            return 0
-        else:
-            self.connection_error = False
-            self.last_http_status_code = r.status_code
-            return r       
+
+        r = requests.get(tmp_url, auth=('', self.password))
+        self.last_http_status_code = r.status_code
+        return r

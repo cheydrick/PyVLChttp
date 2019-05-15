@@ -27,6 +27,8 @@ TODO:
       happened, else the caller has to check the HTTP status and connection status
       every time (unless that's ok?). Maybe instead just check once on init and hope
       nothing bad happens later.
+        - I've decided how to do this. Let this API only return pass/fail to the caller. If the caller
+          really wants to see the http status codes, they can check the last_http_status_code value.
     - Utility functions for converting file paths to MRL format
     - Utility functions for converting browse_dir() output to something useful
     - Maybe just use the json output and drop xml?
