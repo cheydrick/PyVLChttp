@@ -25,9 +25,9 @@ class VLCHTTPAPI():
         self.password = password
 
         # URLs that return status/playlist
-        self.status_url = self.vlc_url + '/requests/status.xml'
-        self.playlist_url = self.vlc_url + '/requests/playlist.xml'
-        self.browse_url = self.vlc_url + '/requests/browse.xml'
+        self.status_url = self.vlc_url + '/requests/status.json'
+        self.playlist_url = self.vlc_url + '/requests/playlist.json'
+        self.browse_url = self.vlc_url + '/requests/browse.json'
         
         # URLs that send simple commands
         self.play_url = self.status_url + '?command=pl_play'
@@ -37,8 +37,8 @@ class VLCHTTPAPI():
         self.empty_playlist_url = self.status_url + '?command=pl_empty'
         self.random_toggle_url = self.status_url + '?command=pl_random'
         self.loop_toggle_url = self.status_url + '?command=pl_loop'
-        self.repeat_toggle_url = self.status_url + '?command=pl_repeat'
-        self.fullscreen_toggle_url = self.status_url + '?command=fullscreen'
+        self.toggle_repeat_url = self.status_url + '?command=pl_repeat'
+        self.toggle_fullscreen_url = self.status_url + '?command=fullscreen'
 
         # URLs that require additional arguments
         self.play_mrl_url_prefix = self.status_url + '?command=in_play&input='
@@ -80,10 +80,10 @@ class VLCHTTPAPI():
         r = self._send_command(self.loop_toggle_url)
     
     def toggle_repeat(self):
-        r = self._send_command(self.repeat_toggle_url)
+        r = self._send_command(self.toggle_repeat_url)
 
     def toggle_fullscreen(self):
-        r = self._send_command(self.fullscreen_toggle_url)
+        r = self._send_command(self.toggle_fullscreen_url)
     
     def add_to_playlist(self, mrl):
         r = self._send_command(self.add_mrl_playlist_url_prefix, mrl)

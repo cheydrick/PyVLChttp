@@ -1,0 +1,75 @@
+{
+  "length":255,
+  "currentplid":3,
+  "position":0.085659101605415,
+  "repeat":false,
+  "information":{
+    "titles":[],
+    "title":0,
+    "chapters":[],
+    "category":{
+      "meta":{
+        "artist":"Warning The Monster Is Loose",
+        "genre":"Rock and Roll",
+        "date":"2014",
+        "track_number":"2",
+        "filename":"Wild side of life.mp3",
+        "album":"Mojo Frankenstein",
+        "title":"Wild side of life",
+        "artwork_url":"file:///home/chris/snap/vlc/common/.cache/vlc/art/artistalbum/Warning%20The%20Monster%20Is%20Loose/Mojo%20Frankenstein/art"
+      },
+      "Stream 0":{
+        "Sample_rate":"44100 Hz",
+        "Bitrate":"128 kb/s",
+        "Type":"Audio",
+        "Codec":"MPEG Audio layer 1/2 (mpga)",
+        "Bits_per_sample":"32",
+        "Channels":"Stereo"
+      }
+    },
+    "chapter":0
+  },
+  "audiofilters":{
+    "filter_0":""
+  },
+  "random":false,
+  "apiversion":3,
+  "stats":{
+    "sentbytes":0,
+    "demuxreadpackets":0,
+    "demuxbitrate":0.015963759273291,
+    "displayedpictures":0,
+    "playedabuffers":852,
+    "demuxcorrupted":0,
+    "demuxreadbytes":356118,
+    "decodedaudio":1704,
+    "readbytes":363776,
+    "lostpictures":0,
+    "sentpackets":0,
+    "averagedemuxbitrate":0,
+    "sendbitrate":0,
+    "averageinputbitrate":0,
+    "demuxdiscontinuity":0,
+    "lostabuffers":0,
+    "readpackets":110,
+    "inputbitrate":0.015924146398902,
+    "decodedvideo":0
+  },
+  "equalizer":[],
+  "videoeffects":{
+    "gamma":1,
+    "hue":0,
+    "saturation":1,
+    "brightness":1,
+    "contrast":1
+  },
+  "state":"playing",
+  "version":"3.0.6 Vetinari",
+  "rate":1,
+  "fullscreen":0,
+  "audiodelay":0,
+  "subtitledelay":0,
+  "time":21,
+  "volume":256,
+  "loop":false
+}
