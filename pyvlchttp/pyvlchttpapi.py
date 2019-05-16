@@ -1,5 +1,6 @@
 import requests
 import sys
+import json
 
 class VLCHTTPAPI():
     """
@@ -42,12 +43,13 @@ class VLCHTTPAPI():
 
         # Last HTTP status code storage
         self.last_http_status_code = None
-        self.connection_error = False
+        # Last response storage
+        self.last_response = None
+
 
     def get_status(self):
-        #TODO make this return something sensible
         r = self._send_command(self.status_url)
-        return r
+        return json.loads(r.text)
     
     def get_playlist(self):
         #TODO make this return something sensible
@@ -55,34 +57,34 @@ class VLCHTTPAPI():
         return r
 
     def play(self):
-        return self._send_command(self.play_url)
+        self._send_command(self.play_url)
 
     def stop(self):
-        return self._send_command(self.stop_url)
+        self._send_command(self.stop_url)
 
     def play_next(self):
-        return self._send_command(self.play_next_url)
+        self._send_command(self.play_next_url)
 
     def play_previous(self):
-        return self._send_command(self.play_previous_url)
+        self._send_command(self.play_previous_url)
 
     def empty_playlist(self):
-        return self._send_command(self.empty_playlist_url)
+        self._send_command(self.empty_playlist_url)
 
     def toggle_random(self):
-        return self._send_command(self.random_toggle_url)
+        self._send_command(self.random_toggle_url)
 
     def toggle_loop(self):
-        return self._send_command(self.loop_toggle_url)
+        self._send_command(self.loop_toggle_url)
     
     def toggle_repeat(self):
-        return self._send_command(self.toggle_repeat_url)
+        self._send_command(self.toggle_repeat_url)
 
     def toggle_fullscreen(self):
-        return self._send_command(self.toggle_fullscreen_url)
+        self._send_command(self.toggle_fullscreen_url)
     
     def add_to_playlist(self, mrl):
-        return self._send_command(self.add_mrl_playlist_url_prefix, mrl)
+        self._send_command(self.add_mrl_playlist_url_prefix, mrl)
 
     def browse_dir(self, dir):
         ''' >>>browse_dir('/Users/Joe/Media/') '''
@@ -96,6 +98,6 @@ class VLCHTTPAPI():
         else:
             tmp_url = command_url + mrl_or_id
 
-        r = requests.get(tmp_url, auth=('', self.password))
-        self.last_http_status_code = r.status_code
-        return r
+        self.last_response = requests.get(tmp_url, auth=('', self.password))
+        self.last_http_status_code = self.last_response.status_code
+        return self.last_response

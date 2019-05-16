@@ -17,19 +17,7 @@ is documented in more detail in VideoLAN\VLC\lua\http\requests\README.txt wherev
 is installed.
 
 TODO:
-    - Looks like the spec on the VLC website lags the spec in README.txt, need to review
     - Implement all of the functions in VLCHTTPAPI() that require additional arguments
-    - Parse out returned XML (status/playlist) into something useful
-        - Or maybe leave that up to the caller?
-        - How about I include some helper classes for parsing the XML?
     - Comments/Examples
-    - I need better ideas for how to inform the caller that a connection error
-      happened, else the caller has to check the HTTP status and connection status
-      every time (unless that's ok?). Maybe instead just check once on init and hope
-      nothing bad happens later.
-        - I've decided how to do this. Let this API only return pass/fail to the caller. If the caller
-          really wants to see the http status codes, they can check the last_http_status_code value.
-    - Utility functions for converting file paths to MRL format
     - Utility functions for converting browse_dir() output to something useful
-    - Maybe just use the json output and drop xml?
-    - URI? URL? I don't know what the rules are
+    - Tests (integration more so than unit)
