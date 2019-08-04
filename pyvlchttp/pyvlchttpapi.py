@@ -1,5 +1,4 @@
 import requests
-import sys
 import json
 
 def _make_command(url_name, parameters):
