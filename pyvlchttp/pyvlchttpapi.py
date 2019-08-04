@@ -1,11 +1,13 @@
 import requests
 import json
 
+
 def _make_command(url_name, parameters):
     def command_function(self):
         return self._send_command(self.URLs[url_name], parameters)
 
     return command_function
+
 
 def _make_simple_command(command):
     return _make_command('status', {'command': command})
@@ -24,7 +26,7 @@ class VLCHTTPAPI():
         >>>vlc.stop()
         etc...
     """
-    def __init__(self, ip = '127.0.0.1', port = '8080', password = 'password'):  # nosec
+    def __init__(self, ip='127.0.0.1', port='8080', password='password'):  # nosec
         self.vlc_url = 'http://' + ip + ':' + port
         self.password = password
 
@@ -40,13 +42,12 @@ class VLCHTTPAPI():
         # Last response storage
         self.last_response = None
 
-
     def get_status(self):
         r = self._send_command(self.URLs['status'])
         return json.loads(r.text)
-    
+
     def get_playlist(self):
-        #TODO make this return something sensible
+        # TODO make this return something sensible
         r = self._send_command(self.playlist_url)
         return r
 
@@ -61,9 +62,9 @@ class VLCHTTPAPI():
     toggle_loop = _make_simple_command('pl_loop')
     toggle_repeat = _make_simple_command('pl_repeat')
     toggle_fullscreen = _make_simple_command('fullscreen')
-    
+
     def add_to_playlist(self, mrl):
-       _make_command('status', {'command': 'in_enqueue', 'input': mrl})(self)
+        _make_command('status', {'command': 'in_enqueue', 'input': mrl})(self)
 
     def browse_dir(self, dir):
         ''' >>>browse_dir('/Users/Joe/Media/') '''
