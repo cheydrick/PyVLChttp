@@ -24,7 +24,7 @@ class VLCHTTPAPI():
         >>>vlc.stop()
         etc...
     """
-    def __init__(self, ip = '127.0.0.1', port = '8080', password = 'password'):
+    def __init__(self, ip = '127.0.0.1', port = '8080', password = 'password'):  # nosec
         self.vlc_url = 'http://' + ip + ':' + port
         self.password = password
 
