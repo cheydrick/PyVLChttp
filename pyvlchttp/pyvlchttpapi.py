@@ -48,7 +48,7 @@ class VLCHTTPAPI():
 
     def get_playlist(self):
         # TODO make this return something sensible
-        r = self._send_command(self.playlist_url)
+        r = self._send_command(self.URLs['playlist'])
         return r
 
     play = _make_simple_command('pl_play')
