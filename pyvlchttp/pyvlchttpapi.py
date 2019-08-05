@@ -51,7 +51,11 @@ class VLCHTTPAPI():
         response = _make_command('playlist', {})(self)
         return response
 
-    play = _make_simple_command('pl_play')
+    def play(self, id=None):
+        # https://2.python-requests.org//en/master/user/quickstart/#passing-parameters-in-urls
+        # ...any dictionary key whose value is None will not be added to the URL's query string.
+        return _make_command('status', {'command': 'pl_play', 'id': id})(self)
+
     pause = _make_simple_command('pl_pause')
     stop = _make_simple_command('pl_stop')
     play_next = _make_simple_command('pl_next')
