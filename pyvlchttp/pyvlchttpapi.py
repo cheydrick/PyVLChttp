@@ -43,13 +43,13 @@ class VLCHTTPAPI():
         self.last_response = None
 
     def get_status(self):
-        r = self._send_command(self.URLs['status'])
-        return json.loads(r.text)
+        response = _make_command('status', {})(self)
+        return json.loads(response.text)
 
     def get_playlist(self):
         # TODO make this return something sensible
-        r = self._send_command(self.URLs['playlist'])
-        return r
+        response = _make_command('playlist', {})(self)
+        return response
 
     play = _make_simple_command('pl_play')
     pause = _make_simple_command('pl_pause')
