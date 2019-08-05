@@ -68,7 +68,7 @@ class VLCHTTPAPI():
     toggle_fullscreen = _make_simple_command('fullscreen')
 
     def add_to_playlist(self, mrl):
-        _make_command('status', {'command': 'in_enqueue', 'input': mrl})(self)
+        return _make_command('status', {'command': 'in_enqueue', 'input': mrl})(self)
 
     def browse_dir(self, dir):
         ''' >>>browse_dir('/Users/Joe/Media/') '''
